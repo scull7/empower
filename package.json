@@ -30,5 +30,10 @@
     "coveralls": "^2.11.4",
     "istanbul": "^0.4.0",
     "mocha": "^2.3.3"
+  },
+  "dependencies": {
+    "empower-object-role": "^1.0.1",
+    "empower-permission": "^1.0.1",
+    "empower-role": "^1.0.3"
   }
 }

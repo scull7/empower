@@ -16,6 +16,6 @@ pathToObjectName  = (path) -> ""
 
 module.exports  =
 
-  contextToRoles    : rolesFromContext
+  contextToRoles    : contextToRoles
   pathToObjectId    : pathToObjectId
   pathToObjectName  : pathToObjectName
