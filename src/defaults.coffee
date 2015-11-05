@@ -1,21 +1,21 @@
 
+# @TODO cover the case where ctx is an array.
+contextToRoles    = (ctx, done) ->
+  err = switch
+    when not ctx then 'context_required'
+    when typeof ctx isnt 'object' then 'context_invalid'
+    when not ctx.user then 'context_user_required'
+    when typeof ctx.user isnt 'object' then 'context_user_invalid'
+    when not ctx.user.roles then 'context_user_roles_required'
+    when not (Array.isArray ctx.user.roles)
+      'context_user_roles_invalid'
+    else null
 
-# contextToRoles :: Context -> (Error -> Array String) -> Nil
-contextToRoles    = (context, done) -> if not context?.user?.roles
-  done (new Error 'could not extract roles from the given context')
-else
-  done null, context.user.roles
+  err = (new Error err) if err
 
 
-# pathToObjectId :: String -> String
-pathToObjectId    = (path) -> null
+  done(err, ctx?.user?.roles)
 
-
-# pathToObjectName :: String -> String
-pathToObjectName  = (path) -> ""
 
 module.exports  =
-
   contextToRoles    : contextToRoles
-  pathToObjectId    : pathToObjectId
-  pathToObjectName  : pathToObjectName

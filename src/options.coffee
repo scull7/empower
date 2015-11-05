@@ -1,20 +1,18 @@
 {
   contextToRoles
-  pathToObjectId
-  pathToObjectName
 }     = require './defaults'
 
 # parse :: Object -> Object
 parse = (options) ->
 
-  # @TODO ensure the user has provided all the proper maps
+  contextToRoles  : options.contextToRoles or contextToRoles
+  roleMap         : options.roleMap
+  pathMap         : options.pathMap
 
-  contextToRoles    : options.contextToRoles or contextToRoles
-  pathToObjectId    : options.pathToObjectId or pathToObjectId
-  pathToObjectName  : options.pathToObjectName or pathToObjectName
+  if typeof roleMap?.check isnt "function" or roleMap?.length isnt 3
+    throw new TypeError 'roleMap option must have a "check" function'
 
-  roleMap       : options.roleMap
-  pathMap       : options.pathMap
-  objectRoleMap : options.objectRoleMap
+  if typeof pathMap?.getToken isnt "function" or pathMap.length isnt 2
+    throw new TypeError 'pathMap option must have a "getToken" function'
 
 module.exports  = parse

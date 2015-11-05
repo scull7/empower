@@ -1,36 +1,30 @@
 
 parseOptions  = require './options'
 
-empower = (options, context, path, method, done) ->
-  {
-    contextToRoles
-    pathToObjectId
-    pathToObjectName
-    roleMap
-    pathMap
-    objectRoleMap
-  }               = parseOptions options
 
-  pathToken       = pathMap.getToken path, method
-  getObjectRoles  = objectRoleMap.getRoles.bind(
-    null,
-    (pathToObjectName objectName),
-    context,
-    (pathToObjectId ObjectId)
-  )
-
-  # pull the roles from the context and then combine any object roles
-  contextToRoles context, (addObjectRoles checkRoles)
+# coalesce all of the role checks into a single value and pass it to the
+# continuation function.
+authHandlerFactory = (roleMap, token, method, done) -> (err, roles) ->
+  if err then (done err) else
+    done null, (roleMap.check roles, token, method)
 
 
-  # return a handler that will combine any given roles with any found
-  # object roles
-  addObjectRoles  = (cb) -> (err, roles) ->
-    if err then (cb err) else getObjectRoles (err, objectRoles) ->
-      if err then (cb err) else cb null, (roles.concat objectRoles)
+empower = (options, ctx, path, method, done) ->
+  try
+    {
+      contextToRoles
+      roleMap
+      pathMap
+    }               = parseOptions options
+
+    pathToken       = pathMap.getToken path, method
+    contextToRoles ctx, (authHandlerFactory roleMap, pathToken, method, done)
+
+  catch e
+    done e
 
 
-  # coalesce all of the role checks into a single value and pass it to the
-  # continuation function.
-  checkRoles      = (err, roles) -> if err then (done err) else
-    done null, (roleMap.check roles, pathToken)
+empower.authHandlerFactory  = authHandlerFactory
+
+
+module.exports  = empower

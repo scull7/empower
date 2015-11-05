@@ -1,6 +1,6 @@
 empower               = require './empower'
-empower.PermissionMap = require('empower-permission').Map
+empower.PermissionMap = require 'empower-permission'
 empower.RoleMap       = require 'empower-role'
-empower.ObjectRoleMap = require 'empower-object-role'
 
-module.exports  = empower
+
+module.exports        = empower
