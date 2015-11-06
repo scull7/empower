@@ -1,6 +1,6 @@
 {
   "name": "privilege",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Give your users a sense of privilege with role base permissions.",
   "main": "dist/index.js",
   "scripts": {
