@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/scull7/empower.svg?branch=master)](https://travis-ci.org/scull7/empower)
+[![Coverage Status](https://coveralls.io/repos/scull7/empower/badge.svg?branch=master&service=github)](https://coveralls.io/github/scull7/empower?branch=master)
+
 # empower
 Empower your routes with role based permissions.
 
@@ -10,7 +13,7 @@ URLs to a route-permission key.
 ### Mapping Roles to Permission Tokens and Methods
 
 This is a mapping of roles to permission tokens and the CRUD _(using their
-HTTP method names)_ action permissions. 
+HTTP method names)_ action permissions.
 
 ### Usage
 
