@@ -1,7 +1,7 @@
 {
-  "name": "empower",
+  "name": "entitlement",
   "version": "1.0.0",
-  "description": "Empower your routes with role based permissions.",
+  "description": "Give your users a sense of entitlement with role base permissions.",
   "main": "dist/index.js",
   "scripts": {
     "prepublish": "./node_modules/.bin/coffee -o dist -c src/*.coffee",

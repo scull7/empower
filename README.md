@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/scull7/empower.svg?branch=master)](https://travis-ci.org/scull7/empower)
 [![Coverage Status](https://coveralls.io/repos/scull7/empower/badge.svg?branch=master&service=github)](https://coveralls.io/github/scull7/empower?branch=master)
 
-# empower
-Empower your routes with role based permissions.
+# entitlement
+Give your users a sense of entitlement with role based permissions.
 
 ### Mapping URLs to Permission Tokens
 
@@ -19,7 +19,7 @@ HTTP method names)_ action permissions.
 
 ```javascript
 
-var Empower = require('empower')
+var Entitlement = require('entitlement')
 
 var pathToTokenMap  = {
   '/test/path/:id': 'test:path',
@@ -43,9 +43,9 @@ var roleToTokenMap  = {
   }
 };
 
-var empower = require('empower')({
-  pathMap: Empower.PermissionMap.fromJson(pathToTokenMap),
-  roleMap: Empower.roleMap.fromJson(roleToTokenMap)
+var entitlement = require('empower')({
+  pathMap: Entitlement.PermissionMap.fromJson(pathToTokenMap),
+  roleMap: Entitlement.roleMap.fromJson(roleToTokenMap)
 });
 
 // This could be a request object.
@@ -53,17 +53,17 @@ var ctx  = {
   user: { roles: [ 'role-one' ] }
 };
 
-empower(ctx, '/test/path/123/action', 'post', function(err, allowed) {
+entitlement(ctx, '/test/path/123/action', 'post', function(err, allowed) {
   // will output "true"
   console.log("user can access: ", allowed);
 })
 
-empower(ctx, '/test/path/123', 'post', function(err, allowed) {
+entitlement(ctx, '/test/path/123', 'post', function(err, allowed) {
   // will output "false"
   console.log("user can access: ", allowed);
 })
 
-empower(ctx, '/test/path/123', 'get', function(err, allowed) {
+entitlement(ctx, '/test/path/123', 'get', function(err, allowed) {
   /// will output "true"
   console.log("user can access: ", allowed);
 })
