@@ -19,8 +19,6 @@ HTTP method names)_ action permissions.
 
 ```javascript
 
-var Privilege = require('privilege')
-
 var pathToTokenMap  = {
   '/test/path/:id': 'test:path',
   '/test/path/:id/action': 'test:path:action',
@@ -43,7 +41,7 @@ var roleToTokenMap  = {
   }
 };
 
-var privilege = require('empower')({
+var privilege = require('privilege')({
   pathMap: Privilege.PermissionMap.fromJson(pathToTokenMap),
   roleMap: Privilege.roleMap.fromJson(roleToTokenMap)
 });
