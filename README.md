@@ -44,6 +44,9 @@ var roleToTokenMap  = {
 var privilege = require('privilege')({
   pathMap: Privilege.PermissionMap.fromJson(pathToTokenMap),
   roleMap: Privilege.roleMap.fromJson(roleToTokenMap)
+  // You can override the user role context lookup
+  // by providing your own function.
+  //contextToRoles: function(ctx, done) { done(null, [ 'my-role']); }
 });
 
 // This could be a request object.
