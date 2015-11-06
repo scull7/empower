@@ -1,7 +1,7 @@
 {
-  "name": "entitlement",
+  "name": "privilege",
   "version": "1.0.0",
-  "description": "Give your users a sense of entitlement with role base permissions.",
+  "description": "Give your users a sense of privilege with role base permissions.",
   "main": "dist/index.js",
   "scripts": {
     "prepublish": "./node_modules/.bin/coffee -o dist -c src/*.coffee",
