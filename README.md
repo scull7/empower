@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/scull7/empower.svg?branch=master)](https://travis-ci.org/scull7/empower)
-[![Coverage Status](https://coveralls.io/repos/scull7/empower/badge.svg?branch=master&service=github)](https://coveralls.io/github/scull7/empower?branch=master)
+[![Build Status](https://travis-ci.org/scull7/privilege.svg?branch=master)](https://travis-ci.org/scull7/privilege)
+[![Coverage Status](https://coveralls.io/repos/scull7/privilege/badge.svg?branch=master&service=github)](https://coveralls.io/github/scull7/privilege?branch=master)
 
 # privilege
 Give your users a sense of privilege with role based permissions.
