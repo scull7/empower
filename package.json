@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "empower-object-role": "^1.0.1",
-    "empower-permission": "^1.0.1",
-    "empower-role": "^1.0.3"
+    "empower-permission": "^1.0.2",
+    "empower-role": "^1.0.4"
   }
 }
