@@ -11,10 +11,22 @@ describe 'Options Parser', ->
         pathMap: { getToken: (path, method) -> null }
     catch e
       assert.equal (e instanceof TypeError), true
-      assert.equal e.message, 'roleMap option must have a "check" function'
+      assert.equal e.message, 'roleMap option is required'
 
-  it 'should throw a TypeError if roleMap doesn\'t have a proper ' +
-  '"check" function', ->
+
+  it 'should throw a TypeError if roleMap.check is not a function', ->
+
+    try
+      options = parse
+        roleMap: { check: 'foo' }
+        pathMap: { getToken: (path, method) -> null }
+    catch e
+      assert.equal (e instanceof TypeError), true
+      assert.equal e.message, 'roleMap option must have a \'check\' function'
+
+
+  it 'should throw a TypeError if roleMap.check doesn\'t have an arity of 3',
+  ->
 
     try
       options = parse
@@ -22,7 +34,7 @@ describe 'Options Parser', ->
         pathMap: { getToken: (path, method) -> null }
     catch e
       assert.equal (e instanceof TypeError), true
-      assert.equal e.message, 'roleMap option must have a "check" function'
+      assert.equal e.message, 'roleMap.check must have an arity of 3'
 
   it 'should throw a TypeError if pathMap is not set.', ->
 
@@ -31,9 +43,21 @@ describe 'Options Parser', ->
         roleMap: { check: (map, path, method) -> null }
     catch e
       assert.equal (e instanceof TypeError), true
-      assert.equal e.message, 'pathMap option must have a "getToken" function'
+      assert.equal e.message, 'pathMap option is required'
 
-  it 'should throw a Type error if pathMap.getToken does\'t have an arity of 3',
+
+  it 'should throw a TypeError if pathMap.getToken is not a function', ->
+
+    try
+      options = parse
+        roleMap: { check: (map, path, method) -> null }
+        pathMap: { getToken: 'test' }
+    catch e
+      assert.equal (e instanceof TypeError), true
+      assert.equal e.message, 'pathMap option must have a \'getToken\' function'
+
+
+  it 'should throw a TypeError if pathMap.getToken does\'t have an arity of 3',
   ->
 
     try
@@ -48,7 +72,7 @@ describe 'Options Parser', ->
 
     options = parse
       roleMap: { check: (map, path, method) -> null }
-      pathMap: { getToken: (path, method) -> null }
+      pathMap: { getToken: (path) -> null }
 
     assert.equal (typeof options.contextToRoles), 'function'
 
@@ -57,7 +81,7 @@ describe 'Options Parser', ->
     try
       options = parse
         roleMap: { check: (map, path, method) -> null }
-        pathMap: { getToken: (path, method) -> null }
+        pathMap: { getToken: (path) -> null }
         contextToRoles: null
     catch e
       assert.equal (e instanceof TypeError), true
@@ -69,18 +93,18 @@ describe 'Options Parser', ->
     try
       options = parse
         roleMap: { check: (map, path, method) -> null }
-        pathMap: { getToken: (path, method) -> null }
+        pathMap: { getToken: (path) -> null }
         contextToRoles: (one) -> null
     catch e
       assert.equal (e instanceof TypeError), true
-      assert.equal e.message, 'contextToRoles option must be a function'
+      assert.equal e.message, 'contextToRoles must accept at least 2 arguments'
 
 
   it 'should use the given contextToRoles function', ->
 
     options = parse
       roleMap: { check: (map, path, method) -> null }
-      pathMap: { getToken: (path, method) -> null }
+      pathMap: { getToken: (path) -> null }
       contextToRoles: (err, done) -> 'test'
 
     assert.equal options.contextToRoles(), 'test'
