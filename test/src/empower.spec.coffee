@@ -5,7 +5,7 @@ empower = require '../../src/empower'
 # A simple options container that provides mock stuffs
 options =
   roleMap: { check: (roleList, token, method) -> null }
-  pathMap: { getToken: (path, method) -> null }
+  pathMap: { getToken: (path) -> null }
   contextToRoles: (ctx, done) -> done()
 
 describe 'Empower', ->
@@ -28,9 +28,8 @@ describe 'Empower', ->
       assert.equal method, 'get'
       return true
 
-    options.pathMap.getToken  = (path, method) ->
+    options.pathMap.getToken  = (path) ->
       assert.equal path, 'test/path'
-      assert.equal method, 'get'
       return 'pathToken'
 
     empower options, ctx, 'test/path', 'get', (err, isAllowed) ->
@@ -44,7 +43,7 @@ describe 'Empower', ->
     ctx     = 'test'
     options =
       contextToRoles: (ctx, cb) -> (cb (new Error 'test-ctx-err'))
-      pathMap: { getToken: (path, method) -> 'test:token' }
+      pathMap: { getToken: (path) -> 'test:token' }
       roleMap: { check: (roleList, token, method) -> throw new Error('bad') }
 
     empower options, ctx, 'test/path', 'get', (err, isAllowed) ->
@@ -56,7 +55,7 @@ describe 'Empower', ->
     ctx     = 'test'
     options =
       contextToRoles: (ctx, cb) -> throw new Error 'test-ctx-thrown-err'
-      pathMap: { getToken: (path, method) -> 'test:token' }
+      pathMap: { getToken: (path) -> 'test:token' }
       roleMap: { check: (roleList, token, method) -> throw new Error('bad') }
 
     empower options, ctx, 'test/path', 'get', (err, isAllowed) ->

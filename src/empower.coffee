@@ -17,7 +17,7 @@ empower = (options, ctx, path, method, done) ->
       pathMap
     }               = parseOptions options
 
-    pathToken       = pathMap.getToken path, method
+    pathToken       = pathMap.getToken path
     contextToRoles ctx, (authHandlerFactory roleMap, pathToken, method, done)
 
   catch e
