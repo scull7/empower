@@ -1,6 +1,10 @@
 empower               = require './empower'
-empower.PermissionMap = require 'empower-permission'
-empower.RoleMap       = require 'empower-role'
 
 
-module.exports        = empower
+Empower = (options) -> empower.bind(null, options)
+
+Empower.PermissionMap = require 'empower-permission'
+Empower.RoleMap       = require 'empower-role'
+
+
+module.exports        = Empower
