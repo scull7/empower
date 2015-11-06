@@ -82,7 +82,7 @@ describe 'Options Parser', ->
       options = parse
         roleMap: { check: (map, path, method) -> null }
         pathMap: { getToken: (path) -> null }
-        contextToRoles: null
+        contextToRoles: 'foo'
     catch e
       assert.equal (e instanceof TypeError), true
       assert.equal e.message, 'contextToRoles option must be a function'
