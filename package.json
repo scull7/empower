@@ -19,6 +19,12 @@
     "empower"
   ],
   "author": "Nathan A Sculli <scull7@gmail.com>",
+  "contributors": [
+    {
+      "name": "TJ Cole",
+      "email": "thomas.jm.cole@gmail.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/scull7/privilege/issues"
