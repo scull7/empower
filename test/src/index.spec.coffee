@@ -19,6 +19,8 @@ testRoles =
     'test:path': [ 'get' ]
     'test:other:two': ['get' ]
     'test:stuff': [ 'get', 'put', 'delete' ]
+  'role-three':
+    '*': ['get', 'post', 'put', 'delete']
 
 testPathMap = Empower.PermissionMap.fromJson testPerms
 testRoleMap = Empower.RoleMap.fromJson testRoles
@@ -36,7 +38,10 @@ ctx2      =
 ctx3      =
   user: roles: ['role-one', 'role-two']
 
-describe 'Empower', ->
+ctx4      = 
+  user: roles: ['role-three']
+
+describe 'Empower Index', ->
 
   it 'should allow allow role-one "get" access on "/test/path/:id" ', (done) ->
 
@@ -69,6 +74,16 @@ describe 'Empower', ->
         assert.equal allowed, true
       catch e
         e
+
+
+  it 'should allow role-three to "put" on "/test/stuff" or any other routes', (done) ->
+
+    empower ctx4, '/test/stuff', 'put', (err, allowed) ->
+      done try
+        assert.equal err, null
+        assert.equal allowed, true
+      catch e
+        e      
 
 
   it 'should allow combined role user to "post" on "/test/stuff"', (done) ->
