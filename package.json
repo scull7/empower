@@ -19,6 +19,12 @@
     "empower"
   ],
   "author": "Nathan A Sculli <scull7@gmail.com>",
+  "contributors": [
+    {
+      "name": "TJ Cole",
+      "email": "thomas.jm.cole@gmail.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/scull7/privilege/issues"
@@ -34,6 +40,6 @@
   "dependencies": {
     "empower-object-role": "^1.0.1",
     "empower-permission": "^1.0.2",
-    "empower-role": "^1.0.4"
+    "empower-role": "^1.0.6"
   }
 }
