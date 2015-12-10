@@ -6,7 +6,7 @@ Give your users a sense of privilege with role based permissions.
 
 ### Mapping URLs to Permission Tokens
 
-This is a mapping from a express compatible URL match string to a permission
+This is a mapping from an express compatible URL match string to a permission
 token that will be used for role -> permission lookup. This is used to map
 URLs to a route-permission key.
 
